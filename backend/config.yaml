@@ -1,0 +1,62 @@
+app_name: "RTSP Defect Detector"
+debug: false
+host: "0.0.0.0"
+port: 8001
+
+allowed_origins:
+  - "http://localhost:5173"
+  - "http://localhost:3000"
+  - "http://localhost"
+
+cameras:
+  # Test video mode for WSL / no-camera environments (synthetic video feed)
+  - id: "test_0"
+    name: "Test Video (Synthetic)"
+    rtsp_url: "0"
+    enabled: true
+    fps: 15
+    resolution: [640, 480]
+    source_type: "test_video"
+
+  # Webcam mode (for machines with cameras)
+  # - id: "webcam_0"
+  #   name: "Webcam (Local Testing)"
+  #   rtsp_url: "0"
+  #   enabled: false
+  #   fps: 15
+  #   resolution: [1280, 720]
+  #   source_type: "webcam"
+
+  # RTSP camera (uncomment when you have real cameras)
+  # - id: "cam_001"
+  #   name: "Camera 1"
+  #   rtsp_url: "rtsp://admin:password@192.168.1.100:554/stream1"
+  #   enabled: false
+  #   fps: 15
+  #   resolution: [1280, 720]
+  #   source_type: "rtsp"
+
+detection:
+  model_path: "models/yolov8n.pt"
+  confidence_threshold: 0.5
+  iou_threshold: 0.45
+  device: "auto"
+  input_size: [640, 640]
+  max_detections: 100
+  inference_interval: 2
+
+stream:
+  jpeg_quality: 85
+  stream_fps: 15
+  buffer_size: 10
+  reconnect_attempts: 3
+  reconnect_delay: 5
+
+websocket:
+  max_connections: 10
+  ping_interval: 20
+  ping_timeout: 10
+
+data_dir: "data"
+capture_dir: "data/captures"
+log_dir: "logs"
