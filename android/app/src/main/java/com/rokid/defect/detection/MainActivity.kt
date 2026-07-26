@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                     val detections = yoloDetector.detect(bitmap)
                     
                     runOnUiThread {
-                        binding.overlayView.setDetections(detections)
+                        binding.overlayView.setDetections(detections, bitmap.width, bitmap.height)
                         binding.tvStatus.text = "Detections: ${detections.size}"
                     }
                 }
