@@ -10,7 +10,7 @@ torchvision==0.16.2
 ultralytics==8.1.0
 opencv-python==4.9.0.80
 numpy==1.26.3
-Pillow==10.2.0
+Pillow==13.0.0
 
 # Configuration
 pydantic==2.5.3
